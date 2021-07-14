@@ -1,0 +1,25 @@
+apt update
+nginx, vim download, openssl
+nginx setting default
+mkdir ssl
+openssl genrsa -out server.key
+openssl req -new -key server.key -out server.csr -subj '/C=JP/ST=Tokyo/L=Tokyo/O=stakabay/OU=Web/CN=localhost'
+openssl x509 -in server.csr -days 3650 -req -signkey server.key > server.crt
+
+php, php-fpm, php-mysql download
+
+download mariadb-server
+service mysql start
+mysql -u root
+CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'password';
+CREATE DATABASE wp;
+GRANT all ON wp.* TO 'wordpress'@'localhost';
+FLUSH PRIVILEGES;
+
+download curl 
+var/www/html
+curl -O https://wordpress.org/latest.tar.gz
+tar -xvf latest.tar.gz
+wp-config.php
+
+
